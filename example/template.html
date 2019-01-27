@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>the registry</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="script.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+
+
+<div class="message {{if .Selection.Made}}shown{{end}}">
+<h3>Thank you for this gift!</h3>
+<h4>Your gift will now be marked as "fulfilled"</h4>
+<p>Here is our mailing address, one more time:</p>
+<address>{{.Address}}</address>
+<h4>Now:</h4>
+{{if .Selection.Made}}
+<a class='btn' target='_blank' href='{{.Selection.URL}}'>Click here to open the item in a new window (you'll head to {{.Selection.URL.Hostname}})</a>
+{{end}}
+<a class="close-btn">✕</a>
+</div>
+
+
+<h3>{{.Name}} registry</h3>
+<p><strong>Thank you so much for considering giving us a gift!</strong> We've picked out some special things that we would love to have and use for a long time to come. We will also happily accept monetary gifts.</p>
+
+<p><strong>How this thing works:</strong> This is a list of items, not a formal registry, per se. If you click on an item, you'll see simple instructions for buying the item and marking it as "fulfilled" on this list. If you have questions about how this list works or have any trouble using it, please let us know: <a href="mailto:{{.Email}}">{{.Email}}</a>!
+
+<div class="container">
+
+<section>
+<a class="item" {{.Bought "https://bigboy.us/webuygold/"}}>
+Cool <i>description</i> here
+<img src="https://bigboy.us/webuygold/design.png">
+More description. <strong>$25.</strong>
+</a>
+</section>
+
+</div>
+
+<form method="POST">
+
+<h4>You're gifting:</h4>
+<p id="purchase"></p>
+
+<h4><a href="" target="_blank">...or click here to just look at this item</a></h4>
+
+<p>You'll be heading to <strong class="url-preview"></strong> to purchase this gift. (Or if you prefer, you can buy from a store or a different website.) But first, please tell us a few things:</p>
+
+<div class="columns">
+<div class="column">
+	<fieldset>
+	<label>Your name:</label>
+	<input type="text" name="name">
+	</fieldset>
+	<fieldset>
+	<label>A message:</label>
+	<textarea name="notes"></textarea>
+	</fieldset>
+	<input name="purchase" type="hidden" id="url">
+</div>
+<div class="column">
+	<address>{{.Address}}</address>
+</div>
+</div>
+
+<p>When you click "I am buying this", you will be taken to the site to purchase the gift, and from henceforth the gift will be shown as "fulfilled" on this site. (Don't worry, we'll show you our address one more time).</p>
+<p>Email us at <a href="mailto:{{.Email}}">{{.Email}}</a> if something doesn't work out with the purchase.</p>
+<button>I am buying this</button><br/>
+<a class="cancel-btn">✕</a>
+</form>
+
+</body>
+</html>
